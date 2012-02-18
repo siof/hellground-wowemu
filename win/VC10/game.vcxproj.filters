@@ -64,6 +64,9 @@
     <Filter Include="Movement">
       <UniqueIdentifier>{22b499ce-a879-41e4-906f-bbfc71a660be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MoveMaps">
+      <UniqueIdentifier>{a57f8b6e-9cc3-40b0-8a37-cb2b721813dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\game\Channel.cpp">
@@ -546,6 +549,12 @@
     </ClCompile>
     <ClCompile Include="..\..\src\game\CharmInfo.cpp">
       <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\movemap\MoveMap.cpp">
+      <Filter>MoveMaps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\game\movemap\PathFinder.cpp">
+      <Filter>MoveMaps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1032,6 +1041,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\game\CharmInfo.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\movemap\PathFinder.h">
+      <Filter>MoveMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\movemap\MoveMap.h">
+      <Filter>MoveMaps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\game\movemap\MoveMapSharedDefines.h">
+      <Filter>MoveMaps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

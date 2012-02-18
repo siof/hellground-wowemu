@@ -767,9 +767,8 @@
     <ResourceCompile Include="..\trinityscripts.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\win\VC90\TrinityCore.vcxproj">
+    <ProjectReference Include="..\..\..\..\win\VC10\TrinityCore.vcxproj">
       <Project>{a3a04e47-43a2-4c08-90b3-029cef558594}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

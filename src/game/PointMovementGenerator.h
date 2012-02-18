@@ -30,8 +30,8 @@ template<class T>
 class TRINITY_DLL_SPEC PointMovementGenerator : public MovementGeneratorMedium< T, PointMovementGenerator<T> >
 {
     public:
-        PointMovementGenerator(uint32 _id, float _x, float _y, float _z, float _speed = 0.0f) : id(_id),
-            i_x(_x), i_y(_y), i_z(_z), speed(_speed) {}
+        PointMovementGenerator(uint32 _id, float _x, float _y, float _z, float _speed = 0.0f, bool _generatePath = false) : id(_id),
+            i_x(_x), i_y(_y), i_z(_z), speed(_speed), m_generatePath(_generatePath) {}
 
         void Initialize(T &);
         void Finalize(T &);
@@ -47,13 +47,14 @@ class TRINITY_DLL_SPEC PointMovementGenerator : public MovementGeneratorMedium< 
         float i_x,i_y,i_z;
         uint32 id;
         float speed;
+        bool m_generatePath;
 };
 
 class TRINITY_DLL_SPEC AssistanceMovementGenerator : public PointMovementGenerator<Creature>
 {
     public:
         AssistanceMovementGenerator(float _x, float _y, float _z) :
-            PointMovementGenerator<Creature>(0, _x, _y, _z) {}
+            PointMovementGenerator<Creature>(0, _x, _y, _z, false) {}
 
         MovementGeneratorType GetMovementGeneratorType() { return ASSISTANCE_MOTION_TYPE; }
         void Finalize(Unit &);

@@ -1106,6 +1106,31 @@ float WorldObject::GetDistanceZ(const WorldObject* obj) const
     return (dist > 0 ? dist : 0);
 }
 
+bool WorldObject::IsWithinDist3d(float x, float y, float z, float dist2compare) const
+{
+    float dx = GetPositionX() - x;
+    float dy = GetPositionY() - y;
+    float dz = GetPositionZ() - z;
+    float distsq = dx*dx + dy*dy + dz*dz;
+
+    float sizefactor = GetObjectBoundingRadius();
+    float maxdist = dist2compare + sizefactor;
+
+    return distsq < maxdist * maxdist;
+}
+
+bool WorldObject::IsWithinDist2d(float x, float y, float dist2compare) const
+{
+    float dx = GetPositionX() - x;
+    float dy = GetPositionY() - y;
+    float distsq = dx*dx + dy*dy;
+
+    float sizefactor = GetObjectBoundingRadius();
+    float maxdist = dist2compare + sizefactor;
+
+    return distsq < maxdist * maxdist;
+}
+
 bool WorldObject::_IsWithinDist(WorldObject const* obj, float dist2compare, bool is3D) const
 {
     float dx = GetPositionX() - obj->GetPositionX();

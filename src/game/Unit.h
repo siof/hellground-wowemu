@@ -398,6 +398,8 @@ enum UnitState
     UNIT_STAT_MOVE            = 0x00100000,
     UNIT_STAT_ROTATING        = 0x00200000,
     UNIT_STAT_CASTING_NOT_MOVE= 0x00400000,
+    UNIT_STAT_IGNORE_PATHFINDING= 0x00800000,
+
     UNIT_STAT_CAN_NOT_MOVE    = (UNIT_STAT_ROOT | UNIT_STAT_STUNNED | UNIT_STAT_DIED),
     UNIT_STAT_LOST_CONTROL    = (UNIT_STAT_CONFUSED | UNIT_STAT_STUNNED | UNIT_STAT_FLEEING | UNIT_STAT_CHARGING),
     UNIT_STAT_SIGHTLESS       = (UNIT_STAT_LOST_CONTROL),
@@ -1136,7 +1138,7 @@ class TRINITY_DLL_SPEC Unit : public WorldObject
 
         void NearTeleportTo(float x, float y, float z, float orientation, bool casting = false);
 
-        void MonsterMoveWithSpeed(float x, float y, float z, float speed, bool time=false);
+        void MonsterMoveWithSpeed(float x, float y, float z, float speed, bool time=false, bool generatePath = false, bool forceDestination = false);
 
         void SendMonsterStop();
         void SendHeartBeat();

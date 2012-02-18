@@ -194,7 +194,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_PCH|Win32'">
     <ClCompile>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\dep\include;..\..\src\framework;..\..\src\shared;..\..\src\shared\Database;..\..\src\game\vmap;..\..\dep\ACE_wrappers;..\..\src\game\;..\..\dep\g3dlite\include;..\..\dep\tbb\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\dep\include;..\..\src\framework;..\..\src\shared;..\..\src\shared\Database;..\..\src\game\movemap;..\..\src\game\vmap;..\..\dep\ACE_wrappers;..\..\src\game\;..\..\dep\g3dlite\include;..\..\dep\tbb\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -349,6 +349,8 @@
     <ClCompile Include="..\..\src\game\GossipDef.cpp" />
     <ClCompile Include="..\..\src\game\Mail.cpp" />
     <ClCompile Include="..\..\src\game\MailHandler.cpp" />
+    <ClCompile Include="..\..\src\game\movemap\MoveMap.cpp" />
+    <ClCompile Include="..\..\src\game\movemap\PathFinder.cpp" />
     <ClCompile Include="..\..\src\game\movement\MoveSpline.cpp" />
     <ClCompile Include="..\..\src\game\movement\MoveSplineInit.cpp" />
     <ClCompile Include="..\..\src\game\movement\packet_builder.cpp" />
@@ -515,6 +517,9 @@
     <ClInclude Include="..\..\src\game\GameEvent.h" />
     <ClInclude Include="..\..\src\game\GossipDef.h" />
     <ClInclude Include="..\..\src\game\Mail.h" />
+    <ClInclude Include="..\..\src\game\movemap\MoveMap.h" />
+    <ClInclude Include="..\..\src\game\movemap\MoveMapSharedDefines.h" />
+    <ClInclude Include="..\..\src\game\movemap\PathFinder.h" />
     <ClInclude Include="..\..\src\game\movement\MoveSpline.h" />
     <ClInclude Include="..\..\src\game\movement\MoveSplineFlag.h" />
     <ClInclude Include="..\..\src\game\movement\MoveSplineInit.h" />

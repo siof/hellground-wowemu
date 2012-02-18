@@ -25,4 +25,5 @@ if(NOT ACE_USE_EXTERNAL)
 endif()
 
 add_subdirectory(g3dlite)
+add_subdirectory(recastnavigation)
 add_subdirectory(src)

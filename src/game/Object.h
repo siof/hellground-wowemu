@@ -506,6 +506,9 @@ class TRINITY_DLL_SPEC WorldObject : public Object//, public WorldLocation
                 GetInstanceId()==obj->GetInstanceId();
         }
 
+        bool IsWithinDist2d(float x, float y, float dist2compare) const;
+        bool IsWithinDist3d(float x, float y, float z, float dist2compare) const;
+
         bool _IsWithinDist(WorldObject const* obj, float dist2compare, bool is3D) const;
         bool _IsWithinDist(WorldLocation const* wLoc, float dist2compare, bool is3D) const;
         bool IsWithinDist(WorldObject const* obj, float dist2compare, bool is3D = true) const

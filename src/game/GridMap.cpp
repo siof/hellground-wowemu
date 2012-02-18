@@ -25,16 +25,17 @@
 #include "DBCStores.h"
 #include "GridMap.h"
 #include "VMapFactory.h"
+#include "MoveMap.h"
 #include "World.h"
 
 #include "Policies/SingletonImp.h"
 #include "Util.h"
 
 #define MAP_MAGIC             'SPAM'
-#define MAP_VERSION_MAGIC     '0.1w'
+#define MAP_VERSION_MAGIC     'v1.2'
 #define MAP_AREA_MAGIC        'AERA'
-#define MAP_HEIGHT_MAGIC      'TGHM'
-#define MAP_LIQUID_MAGIC      'QILM'
+#define MAP_HEIGHT_MAGIC      'MHGT'
+#define MAP_LIQUID_MAGIC      'MLIQ'
 
 GridMap::GridMap()
 {
@@ -623,6 +624,7 @@ TerrainInfo::~TerrainInfo()
              delete m_GridMaps[i][k];
 
      VMAP::VMapFactory::createOrGetVMapManager()->unloadMap(m_mapId);
+     MMAP::MMapFactory::createOrGetMMapManager()->unloadMap(m_mapId);
 }
 
 GridMap * TerrainInfo::Load(const uint32 x, const uint32 y)
@@ -682,6 +684,7 @@ void TerrainInfo::CleanUpGrids(const uint32 diff)
 
                  //unload VMAPS...
                  VMAP::VMapFactory::createOrGetVMapManager()->unloadMap(m_mapId, x, y);
+                 MMAP::MMapFactory::createOrGetMMapManager()->unloadMap(m_mapId, x, y);
              }
          }
      }
@@ -1027,6 +1030,8 @@ GridMap * TerrainInfo::LoadMapAndVMap(const uint32 x, const uint32 y)
                 DEBUG_LOG("Ignored VMAP name:%s, id:%d, x:%d, y:%d (vmap rep.: x:%d, y:%d)", mapName, m_mapId, x,y,x,y);
                 break;
             }
+
+            MMAP::MMapFactory::createOrGetMMapManager()->loadMap(m_mapId, x, y);
         }
     }
 

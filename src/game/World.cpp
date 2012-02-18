@@ -52,6 +52,7 @@
 #include "TemporarySummon.h"
 #include "WaypointMovementGenerator.h"
 #include "VMapFactory.h"
+#include "MoveMap.h"
 #include "GameEvent.h"
 #include "PoolManager.h"
 #include "Database/DatabaseImpl.h"
@@ -178,6 +179,7 @@ World::~World()
 
 
     VMAP::VMapFactory::clear();
+    MMAP::MMapFactory::clear();
 
     //TODO free addSessQueue
 }
@@ -1197,6 +1199,11 @@ void World::LoadConfigSettings(bool reload)
     m_configs[CONFIG_MIN_GM_COMMAND_LOG_LEVEL] = sConfig.GetIntDefault("GmLogMinLevel", 1);
 
     m_configs[CONFIG_PRIVATE_CHANNEL_LIMIT] = sConfig.GetIntDefault("Channel.PrivateLimitCount", 20);
+
+    m_configs[CONFIG_MMAP_ENABLED] = sConfig.GetIntDefault("mmap.enabled", true);
+    std::string ignoreMapIds = sConfig.GetStringDefault("mmap.ignoreMapIds", "");
+    MMAP::MMapFactory::preventPathfindingOnMaps(ignoreMapIds.c_str());
+    sLog.outString("WORLD: mmap pathfinding %sabled", getConfig(CONFIG_MMAP_ENABLED) ? "en" : "dis");
 }
 
 /// Initialize the World
@@ -1204,6 +1211,8 @@ void World::SetInitialWorldSettings()
 {
     ///- Initialize the random number generator
     srand((unsigned int)time(NULL));
+
+    dtAllocSetCustom(dtCustomAlloc, dtCustomFree);
 
     ///- Initialize config settings
     LoadConfigSettings();
