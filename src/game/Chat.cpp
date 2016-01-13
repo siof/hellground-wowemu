@@ -664,6 +664,7 @@ ChatCommand * ChatHandler::getCommandTable()
         { "godmode",        PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleCheatGodmodeCommand,        "", NULL },
         { "maxskill",       PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleMaxSkillCommand,            "", NULL },
         { "possess",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandlePossessCommand,             "", NULL },
+        { "power",          PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleCheatPowerCommand,          "", NULL },
         { "repairitems",    PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleRepairitemsCommand,         "", NULL },
         { "taxi",           PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleTaxiCheatCommand,           "", NULL },
         { "unpossess",      PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleUnPossessCommand,           "", NULL },
