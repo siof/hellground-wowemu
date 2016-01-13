@@ -3090,3 +3090,18 @@ bool ChatHandler::HandleNpcStandState(const char* args)
 
     return true;
 }
+
+bool ChatHandler::HandleCheatGodmodeCommand(const char* args)
+{
+    if (!m_session)
+        return false;
+
+    m_session->GetPlayer()->ToggleCheatState(PlayerCheatState::God);
+
+    if (m_session->GetPlayer()->HasCheatState(PlayerCheatState::God))
+        SendSysMessage("Godmode has been enabled!");
+    else
+        SendSysMessage("Godmode has been disabled!");
+
+    return true;
+}
