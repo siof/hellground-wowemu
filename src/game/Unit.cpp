@@ -846,6 +846,9 @@ uint32 Unit::DealDamage(DamageLog *damageInfo, DamageEffectType damagetype, cons
         if (spellProto && SpellCantDealDmgToPlayer(spellProto->Id))
             return 0;
 
+        if (pVictim->ToPlayer()->HasCheatState(PlayerCheatState::God))
+            return 0;
+
         // Handle Blessed Life
         if (pVictim->getClass() == CLASS_PALADIN)
         {
