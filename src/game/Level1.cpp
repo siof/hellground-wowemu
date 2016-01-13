@@ -3105,3 +3105,17 @@ bool ChatHandler::HandleCheatGodmodeCommand(const char* args)
 
     return true;
 }
+
+bool ChatHandler::HandleCheatPowerCommand(const char* args)
+{
+    if (!m_session)
+        return false;
+
+    m_session->GetPlayer()->ToggleCheatState(PlayerCheatState::Power);
+
+    if (m_session->GetPlayer()->HasCheatState(PlayerCheatState::Power))
+        SendSysMessage("Power cheat has been enabled!");
+    else
+        SendSysMessage("Power cheat has been disabled!");
+    return true;
+}
