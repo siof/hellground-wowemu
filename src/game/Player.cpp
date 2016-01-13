@@ -264,7 +264,10 @@ std::ostringstream& operator<< (std::ostringstream& ss, PlayerTaxi const& taxi)
 
 UpdateMask Player::updateVisualBits;
 
-Player::Player (WorldSession *session): Unit(), m_reputationMgr(this), m_camera(this)
+Player::Player (WorldSession *session): Unit(), 
+    m_reputationMgr(this), 
+    m_camera(this),
+    m_cheatState(PlayerCheatState::None)
 {
     m_transport = 0;
 
@@ -21401,4 +21404,24 @@ void Player::CumulativeACReport(AnticheatChecks check)
         m_AC_cumulative_count[check] = 0;
     }
 
+}
+
+void Player::SetCheatState(PlayerCheatState newState)
+{
+    m_cheatState = m_cheatState | newState;
+}
+
+PlayerCheatState Player::GetCheatState() const
+{
+    return m_cheatState;
+}
+
+bool Player::HasCheatState(PlayerCheatState requestedState) const
+{
+    return (m_cheatState & requestedState) != PlayerCheatState::None;
+}
+
+void Player::ToggleCheatState(PlayerCheatState newState)
+{
+    m_cheatState = m_cheatState ^ newState;
 }

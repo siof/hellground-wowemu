@@ -658,6 +658,19 @@ ChatCommand * ChatHandler::getCommandTable()
         { NULL,             0,              0,            false,  NULL,                                           "", NULL }
     };
 
+    static ChatCommand cheatCommandTable[] =
+    {
+        { "explore",        PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleExploreCheatCommand,        "", NULL },
+        { "godmode",        PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleCheatGodmodeCommand,        "", NULL },
+        { "maxskill",       PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleMaxSkillCommand,            "", NULL },
+        { "possess",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandlePossessCommand,             "", NULL },
+        { "power",          PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleCheatPowerCommand,          "", NULL },
+        { "repairitems",    PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleRepairitemsCommand,         "", NULL },
+        { "taxi",           PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleTaxiCheatCommand,           "", NULL },
+        { "unpossess",      PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleUnPossessCommand,           "", NULL },
+        { "waterwalk",      PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleWaterwalkCommand,           "", NULL },
+    };
+
     static ChatCommand commandTable[] =
     {
         { "account",        PERM_PLAYER,    PERM_CONSOLE, true,   NULL,                                           "", accountCommandTable },
@@ -693,6 +706,7 @@ ChatCommand * ChatHandler::getCommandTable()
         { "ticket",         PERM_GMT,       PERM_CONSOLE, false,  NULL,                                           "", ticketCommandTable },
         { "unban",          PERM_GMT,       PERM_CONSOLE, true,   NULL,                                           "", unbanCommandTable },
         { "wp",             PERM_GMT_DEV,   PERM_CONSOLE, false,  NULL,                                           "", wpCommandTable },
+        { "cheat",          PERM_GMT,       PERM_CONSOLE, false,  NULL,                                           "", cheatCommandTable },
 
         { "additem",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleAddItemCommand,             "", NULL },
         { "additemset",     PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleAddItemSetCommand,          "", NULL },
@@ -713,7 +727,6 @@ ChatCommand * ChatHandler::getCommandTable()
         { "die",            PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleDieCommand,                 "", NULL },
         { "dismount",       PERM_PLAYER,    PERM_CONSOLE, false,  &ChatHandler::HandleDismountCommand,            "", NULL },
         { "distance",       PERM_GMT_DEV,   PERM_CONSOLE, false,  &ChatHandler::HandleGetDistanceCommand,         "", NULL },
-        { "explorecheat",   PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleExploreCheatCommand,        "", NULL },
         //{ "flusharenapoints",PERM_CONSOLE, PERM_CONSOLE, false,  &ChatHandler::HandleFlushArenaPointsCommand,    "", NULL },
         { "freeze",         PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleFreezeCommand,              "", NULL },
         { "goname",         PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleGonameCommand,              "", NULL },
@@ -732,7 +745,6 @@ ChatCommand * ChatHandler::getCommandTable()
         { "listfreeze",     PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleListFreezeCommand,          "", NULL },
         { "loadscripts",    PERM_ADM,       PERM_CONSOLE, true,   &ChatHandler::HandleLoadScriptsCommand,         "", NULL },
         { "lockaccount",    PERM_PLAYER,    PERM_CONSOLE, false,  &ChatHandler::HandleLockAccountCommand,         "", NULL },
-        { "maxskill",       PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleMaxSkillCommand,            "", NULL },
         { "movegens",       PERM_GMT_DEV,   PERM_CONSOLE, false,  &ChatHandler::HandleMovegensCommand,            "", NULL },
         { "mute",           PERM_GMT,       PERM_CONSOLE, true,   &ChatHandler::HandleMuteCommand,                "", NULL },
         { "muteinfo",       PERM_GMT,       PERM_CONSOLE, true,   &ChatHandler::HandleMuteInfoCommand,            "", NULL },
@@ -744,10 +756,8 @@ ChatCommand * ChatHandler::getCommandTable()
         { "pinfo",          PERM_GMT,       PERM_CONSOLE, true,   &ChatHandler::HandlePInfoCommand,               "", NULL },
         { "playall",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandlePlayAllCommand,             "", NULL },
         { "plimit",         PERM_ADM,       PERM_CONSOLE, true,   &ChatHandler::HandlePLimitCommand,              "", NULL },
-        { "possess",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandlePossessCommand,             "", NULL },
         { "recall",         PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleRecallCommand,              "", NULL },
         { "rename",         PERM_HIGH_GMT,  PERM_CONSOLE, true,   &ChatHandler::HandleRenameCommand,              "", NULL },
-        { "repairitems",    PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleRepairitemsCommand,         "", NULL },
         { "respawn",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleRespawnCommand,             "", NULL },
         { "revive",         PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleReviveCommand,              "", NULL },
         { "revivegroup",    PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleReviveGroupCommand,         "", NULL },
@@ -755,7 +765,6 @@ ChatCommand * ChatHandler::getCommandTable()
         { "setskill",       PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleSetSkillCommand,            "", NULL },
         { "showarea",       PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleShowAreaCommand,            "", NULL },
         { "start",          PERM_PLAYER,    PERM_CONSOLE, false,  &ChatHandler::HandleStartCommand,               "", NULL },
-        { "taxicheat",      PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleTaxiCheatCommand,           "", NULL },
         { "trollmute",      PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleTrollmuteCommand,           "", NULL },
         { "trollmuteinfo",  PERM_HIGH_GMT,  PERM_CONSOLE, false,  &ChatHandler::HandleTrollmuteInfoCommand,       "", NULL },
         { "unaura",         PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleUnAuraCommand,              "", NULL },
@@ -764,8 +773,6 @@ ChatCommand * ChatHandler::getCommandTable()
         { "unfreeze",       PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleUnFreezeCommand,            "", NULL },
         { "unlearn",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleUnLearnCommand,             "", NULL },
         { "unmute",         PERM_GMT,       PERM_CONSOLE, true,   &ChatHandler::HandleUnmuteCommand,              "", NULL },
-        { "unpossess",      PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleUnPossessCommand,           "", NULL },
-        { "waterwalk",      PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleWaterwalkCommand,           "", NULL },
         { "wchange",        PERM_ADM,       PERM_CONSOLE, false,  &ChatHandler::HandleChangeWeather,              "", NULL },
         { "weather",        PERM_PLAYER,    PERM_CONSOLE, true,   &ChatHandler::HandleAccountWeatherCommand,      "", NULL },
         { "whispers",       PERM_GMT,       PERM_CONSOLE, false,  &ChatHandler::HandleWhispersCommand,            "", NULL },
