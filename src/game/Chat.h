@@ -545,6 +545,9 @@ class ChatHandler
         bool HandleChangeWeather(const char* args);
         bool HandleKickPlayerCommand(const char * args);
 
+        bool HandleCheatGodmodeCommand(const char* args);
+        bool HandleCheatPowerCommand(const char* args);
+
         // GM ticket command handlers
         bool HandleGMTicketListCommand(const char* args);
         bool HandleGMTicketListOnlineCommand(const char* args);

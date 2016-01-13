@@ -3571,6 +3571,9 @@ void Spell::TakePower()
     bool hit = true;
     if (m_caster->GetTypeId() == TYPEID_PLAYER)
     {
+        if (m_caster->ToPlayer()->HasCheatState(PlayerCheatState::Power))
+            return;
+
         if (GetSpellEntry()->powerType == POWER_RAGE || GetSpellEntry()->powerType == POWER_ENERGY)
             if (uint64 targetGUID = m_targets.getUnitTargetGUID())
                 for (std::list<TargetInfo>::iterator ihit= m_UniqueTargetInfo.begin(); ihit != m_UniqueTargetInfo.end(); ++ihit)

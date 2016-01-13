@@ -97,6 +97,37 @@ enum PlayerSpellState
     PLAYERSPELL_REMOVED   = 3
 };
 
+// A set of ".cheat"-command related states
+enum class PlayerCheatState : uint32
+{
+    // No state is set
+    None = 0x0,
+    // Can not take any damage
+    God = 0x1,
+    // Abilities do not cost any power
+    Power = 0x2
+};
+
+inline PlayerCheatState operator|(PlayerCheatState lhs, PlayerCheatState rhs)
+{
+    return static_cast<PlayerCheatState>(static_cast<uint32>(lhs) | static_cast<uint32>(rhs));
+}
+
+inline PlayerCheatState operator&(PlayerCheatState lhs, PlayerCheatState rhs)
+{
+    return static_cast<PlayerCheatState>(static_cast<uint32>(lhs) & static_cast<uint32>(rhs));
+}
+
+inline PlayerCheatState operator^(PlayerCheatState lhs, PlayerCheatState rhs)
+{
+    return static_cast<PlayerCheatState>(static_cast<uint32>(lhs) ^ static_cast<uint32>(rhs));
+}
+
+inline PlayerCheatState operator~(PlayerCheatState rhs)
+{
+    return static_cast<PlayerCheatState>(~static_cast<uint32>(rhs));
+}
+
 struct PlayerSpell
 {
     uint16 slotId          : 16;
@@ -2285,6 +2316,12 @@ class HELLGROUND_EXPORT Player : public Unit
 
         Camera& GetCamera() { return m_camera; }
 
+        // .cheat related
+        void SetCheatState(PlayerCheatState newState);
+        PlayerCheatState GetCheatState() const;
+        bool HasCheatState(PlayerCheatState requestedState) const;
+        void ToggleCheatState(PlayerCheatState newState);
+
     protected:
         TimeTrackerSmall positionStatus;
 
@@ -2566,6 +2603,8 @@ class HELLGROUND_EXPORT Player : public Unit
 
         Camera m_camera;
         bool m_outdoors;
+
+        PlayerCheatState m_cheatState;
 };
 
 typedef std::set<Player*> PlayerSet;
